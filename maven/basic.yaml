@@ -1,0 +1,27 @@
+---
+on:
+  workflow_call:
+    inputs:
+      goal:
+        description: 'This is maven goal'
+        required: false
+        default: 'clean package'
+        type: string
+      java_version:
+        description: 'This is java version'
+        required: false
+        default: '17'
+        type: string'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ inputs.java_version }}
+          distribution: 'temurin'
+      - name: Build with Maven
+        run: mvn ${{ inputs.goal }}
