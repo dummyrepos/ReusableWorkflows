@@ -11,7 +11,7 @@ on:
         description: 'This is java version'
         required: false
         default: '17'
-        type: string'
+        type: string
 
 jobs:
   build:
